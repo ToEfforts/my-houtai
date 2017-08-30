@@ -32,8 +32,7 @@ define(['jquery','template','cookie'], function ($,template) {
 	// 获取用户登录信息,并填充页面
 	var cookie = $.cookie('loginInfo');
 	var loginInfo = cookie ? JSON.parse(cookie) : {};
-	//$('.profile img').attr('src',loginInfo.tc_avatar);
-	//$('.profile h4').html(loginInfo.tc_name);
+
 	var tpl = '<div class="avatar img-circle"><img src="{{tc_avatar}}"></div> <h4>{{tc_name}}</h4>'
 	var html = template.render(tpl,loginInfo);
 	$('#profileId').html(html);
