@@ -1,4 +1,4 @@
-define(['jquery','template','util','datepicker','language'], function ($,template,util) {
+define(['jquery','template','util','datepicker','language','validate'], function ($,template,util) {
     // 设置导航菜单选中
     util.setMenu('/teacher/list');
     // 获取编辑讲师的 ID
@@ -28,7 +28,33 @@ define(['jquery','template','util','datepicker','language'], function ($,templat
     }
 
     // 实现表单提交功能
-   function submitForm(url){
+    function submitForm(url){
+        $('#formId').validate({
+            sendForm : false,
+            valid : function () {
+                //  提交表单
+                console.log('ad');
+            },
+            description : {
+                tc_name : {
+                    required : '用户名不能为空',
+                    valid : '用户名可以使用'
+                },
+                tc_pass : {
+                    required : '密码不能为空',
+                    pattern : '必须是6位数字',
+                    valid : '密码有效'
+                },
+                tc_join_data : {
+                    required : '入职日期不能为空',
+                    valid : '日期有效'
+                }
+            }
+        });
+    }
+
+
+   /*function submitForm(url){
        $('#formBtn').click(function () {
            $.ajax({
                type :'post',
@@ -43,5 +69,6 @@ define(['jquery','template','util','datepicker','language'], function ($,templat
                }
            });
        })
-   }
+   }*/
+
 });
