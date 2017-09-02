@@ -19,7 +19,6 @@ define(['jquery','template','cookie'], function ($,template) {
 				}
 			}
 		})
-		console.log(123);
 		return false;
 	});
 

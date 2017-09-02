@@ -7,7 +7,9 @@ define(['jquery','template','util'], function ($,template,util) {
         url : '/api/teacher/profile',
         dataType : 'json',
         success : function (data) {
-            console.log(data);
+            // 解析数据渲染页面
+            var html = template('settingsTpl',data.result);
+            $('#settingsInfo').html(html);
         }
     })
 })
