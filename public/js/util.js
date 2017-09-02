@@ -7,8 +7,7 @@ define(['jquery'], function ($) {
         qs : function (key) {
             // 获取URL参数中指定的参数值
             // param 是所有的参数
-            var param = location.search.substring(1);
-            console.dir(param);
+            var param = location.search.substring(1);// 删除参数的第一个问号
             var result = null;
             if (param){
                 var kvs = param.split('&');
