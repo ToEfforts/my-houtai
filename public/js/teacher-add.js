@@ -26,6 +26,7 @@ define(['jquery','template','util'], function ($,template,util) {
         // 绑定添加的提交事件
         submitForm('/api/teacher/add');
     }
+    
     // 实现表单提交功能
    function submitForm(url){
        $('#formBtn').click(function () {
@@ -35,6 +36,9 @@ define(['jquery','template','util'], function ($,template,util) {
                data : $('#formId').serialize(),
                dataType : 'json',
                success : function (data) {
+                   if(data.code == 200){
+                       location.href = '/teacher/list';
+                   }
                    console.log(data);
                }
            });
