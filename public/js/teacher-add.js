@@ -1,4 +1,4 @@
-define(['jquery','template','util'], function ($,template,util) {
+define(['jquery','template','util','datepicker','language'], function ($,template,util) {
     // 设置导航菜单选中
     util.setMenu('/teacher/list');
     // 获取编辑讲师的 ID
@@ -26,7 +26,7 @@ define(['jquery','template','util'], function ($,template,util) {
         // 绑定添加的提交事件
         submitForm('/api/teacher/add');
     }
-    
+
     // 实现表单提交功能
    function submitForm(url){
        $('#formBtn').click(function () {
