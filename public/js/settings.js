@@ -1,4 +1,4 @@
-define(['jquery','template','util','ckeditor','datepicker','language','uploadify','region'], function ($,template,util,SKEDITOR) {
+define(['jquery','template','util','ckeditor','datepicker','language','uploadify','region','validate','form'], function ($,template,util,SKEDITOR) {
     // 设置导航菜单选中
     util.setMenu('/main/index');
     // 调用后台接口获取所有的个人信息
@@ -35,7 +35,34 @@ define(['jquery','template','util','ckeditor','datepicker','language','uploadify
                     { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] }
                 ]
             });
-
+            // 处理表单提交
+            $('#settingForm').validate({
+                sendForm : false,
+                valid : function () {
+                    // 同步富文本信息到textarea中
+                    for(var instance in CKEDITOR.instances){
+                        CKEDITOR.instances[instance].updateElement();
+                    }
+                    // 获取省市县的名称
+                    var p = $('#p').find('option:selected').text();
+                    var c = $('#c').find('option:selected').text();
+                    var d = $('#d').find('option:selected').text();
+                    var hometown = p + '|' + c + '|' + d
+                    // 验证通过，提交表单
+                    $(this).ajaxSubmit({
+                        type : 'post',
+                        url : '/api/teacher/modify',
+                        data : { tc_hometown : hometown },
+                        dataType : 'json',
+                        success : function (data) {
+                            console.log(data);
+                            //if(data.code == 200){
+                            //    location.reload();
+                            //}
+                        }
+                    })
+                }
+            })
         }
     })
 })
