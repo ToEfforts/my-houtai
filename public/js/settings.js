@@ -20,7 +20,7 @@ define(['jquery','template','util','ckeditor','datepicker','language','uploadify
                 swf : '/public/assets/uploadify/uploadify.swf',
                 uploader : '/api/uploader/avatar',
                 onUploadSuccess : function (f,data) {
-                    var data = JSON.parse(data);
+                    var data = eval(`(`+ data +`)`);
                     $('.preview img').attr('src',data.result.path);
                 }
             });
@@ -55,10 +55,10 @@ define(['jquery','template','util','ckeditor','datepicker','language','uploadify
                         data : { tc_hometown : hometown },
                         dataType : 'json',
                         success : function (data) {
-                            console.log(data);
-                            //if(data.code == 200){
-                            //    location.reload();
-                            //}
+                            //console.log(data);
+                            if(data.code == 200){
+                                location.reload();
+                            }
                         }
                     })
                 }
