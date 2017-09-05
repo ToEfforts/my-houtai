@@ -1,6 +1,6 @@
 define(['jquery','template','util','uploadify'], function ($,template,util) {
     // 设置导航菜单
-    util.setMenu('course/add');
+    util.setMenu('/course/add');
     // 获取课程ID
     var csId = util.qs('cs_id');
     // 查询课程封面信息
@@ -26,8 +26,8 @@ define(['jquery','template','util','uploadify'], function ($,template,util) {
                 uploader : '/api/uploader/cover',
                 onUploadSuccess : function (f,data) {
                     console.log(data);
-                    var data = JSON.parse(data);
-                    $('.preview img').attr('src',data.result.path);
+                    //var data = JSON.parse(data);
+                    //$('.preview img').attr('src',data.result.path);
                 }
             });
         }
